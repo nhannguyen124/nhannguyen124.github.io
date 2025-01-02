@@ -1,0 +1,7 @@
+/ (root)
+│
+├── index.html          # Tệp HTML chính
+├── styles/             # Thư mục chứa CSS
+│   └── style.css       # Tệp CSS
+└── scripts/            # Thư mục chứa JS
+    └── script.js       # Tệp JS
