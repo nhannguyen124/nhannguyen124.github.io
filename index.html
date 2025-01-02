@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Python App</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Get API Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .key {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My App</h1>
-    <p>This is hosted on GitHub Pages and connected to a Python backend.</p>
-    <script src="scripts/script.js"></script>
+    <h1>Get Your API Key</h1>
+    <button id="get-key-button">Get API Key</button>
+    <div class="key" id="api-key-display"></div>
+
+    <script>
+        document.getElementById('get-key-button').addEventListener('click', async () => {
+            const response = await fetch('/get-key');
+            const data = await response.json();
+            document.getElementById('api-key-display').textContent = `Your API Key: ${data.api_key}`;
+        });
+    </script>
 </body>
 </html>
