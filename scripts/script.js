@@ -1,21 +1,20 @@
-// script.js
+document.getElementById('get-key-button').addEventListener('click', async () => {
+    const apiKeyDisplay = document.getElementById('api-key-display');
+    const errorDisplay = document.getElementById('error-display');
+    apiKeyDisplay.textContent = '';
+    errorDisplay.textContent = '';
 
-// Xử lý sự kiện khi nhấn nút "Get API Key"
-document.getElementById("get-key").addEventListener("click", async () => {
     try {
-        // Gửi yêu cầu đến server Flask
-        const response = await fetch("https://your-app.onrender.com/generate_key"); // Thay URL này bằng URL của Flask app
+        // Thay URL này bằng URL thật của Flask app
+        const response = await fetch('https://your-flask-api-url.com/get-key');
+        
         if (!response.ok) {
-            throw new Error("Không thể kết nối tới server. Vui lòng kiểm tra lại!");
+            throw new Error('Failed to fetch API key. Please try again.');
         }
 
-        // Lấy dữ liệu JSON từ server
         const data = await response.json();
-
-        // Hiển thị API key ra màn hình
-        alert(`Your API Key: ${data.key}`);
+        apiKeyDisplay.textContent = `Your API Key: ${data.api_key}`;
     } catch (error) {
-        console.error("Đã xảy ra lỗi:", error);
-        alert("Đã xảy ra lỗi khi lấy API key. Vui lòng thử lại!");
+        errorDisplay.textContent = error.message;
     }
 });
