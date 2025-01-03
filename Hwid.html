@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HWID Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .hwid {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>HWID Display</h1>
+    <p>Your HWID is: <span class="hwid">Loading...</span></p>
+
+    <script>
+        // Get the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const hwid = urlParams.get('hwid');
+
+        // Display the HWID or show a message if it's missing
+        const hwidSpan = document.querySelector('.hwid');
+        if (hwid) {
+            hwidSpan.textContent = hwid;
+        } else {
+            hwidSpan.textContent = "not provided!";
+        }
+    </script>
+</body>
+</html>
