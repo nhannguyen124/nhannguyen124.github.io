@@ -3,62 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get API Key</title>
+    <title>Admin Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4b79a1, #282c34);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
             color: white;
+            background-color: #007BFF;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
-        }
-        .key {
-            margin-top: 20px;
-            font-size: 18px;
-            color: green;
-        }
-        .error {
-            color: red;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Get Your API Key</h1>
-    <button id="get-key-button">Get API Key</button>
-    <div id="api-key-display" class="key"></div>
-    <div id="error-display" class="error"></div>
+    <div class="login-box">
+        <h1>Admin Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
 
     <script>
-        document.getElementById('get-key-button').addEventListener('click', async () => {
-            const apiKeyDisplay = document.getElementById('api-key-display');
-            const errorDisplay = document.getElementById('error-display');
-            apiKeyDisplay.textContent = '';
-            errorDisplay.textContent = '';
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-            try {
-                // Thay URL này bằng URL thật của Flask app
-                const response = await fetch('https://your-flask-api-url.com/get-key');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch API key. Please try again.');
-                }
-
-                const data = await response.json();
-                apiKeyDisplay.textContent = `Your API Key: ${data.api_key}`;
-            } catch (error) {
-                errorDisplay.textContent = error.message;
+            if (username === "Bin" && password === "binscriptontop!") { // Example credentials
+                localStorage.setItem('isAdmin', 'true');
+                alert("Login successful!");
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid username or password!");
             }
-        });
+        }
     </script>
 </body>
 </html>
