@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 1 - Get Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4b79a1, #282c34);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button id="redirectToWeb2">Redirect to Web 2</button>
+
+    <script>
+        // Lấy giá trị HWID từ URL của web 1
+        function getHWIDFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('hwid');
+        }
+
+        document.getElementById('redirectToWeb2').addEventListener('click', function () {
+            const hwid = getHWIDFromURL();
+            if (hwid) {
+                // Chuyển hướng đến Web 2, truyền HWID qua URL
+                const web2URL = `https://nhannguyen124.github.io/web2.html?hwid=${encodeURIComponent(hwid)}`;
+                window.location.href = web2URL;
+            } else {
+                alert('Không tìm thấy HWID trong URL của Web 1!');
+            }
+        });
+    </script>
+</body>
+</html>
