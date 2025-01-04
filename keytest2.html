@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 2 - Key Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4b79a1, #282c34);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .hwid-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="hwid-box">
+        <h1>Your HWID</h1>
+        <p id="hwidDisplay">Loading...</p>
+        <button onclick="generateNewKey()">Generate Key</button>
+    </div>
+
+    <script>
+        // Lấy HWID từ URL của web 2
+        function getHWIDFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('hwid');
+        }
+
+        // Hiển thị HWID trên trang
+        const hwid = getHWIDFromURL();
+        document.getElementById('hwidDisplay').textContent = hwid || 'Không tìm thấy HWID!';
+
+        // Xử lý logic tạo key mới
+        function generateNewKey() {
+            if (hwid) {
+                const keyURL = `https://linkvertise.com/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
+                window.location.href = keyURL; // Chuyển hướng đến link key
+            } else {
+                alert('HWID không hợp lệ!');
+            }
+        }
+    </script>
+</body>
+</html>
