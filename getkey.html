@@ -16,20 +16,12 @@
             align-items: center;
             height: 100vh;
         }
-        .login-box {
+        .key-button {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
         }
         button {
             padding: 10px 20px;
@@ -39,6 +31,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         button:hover {
             background-color: #0056b3;
@@ -47,12 +40,14 @@
 </head>
 <body>
     <div class="key-button">
-        <button onclick="openWin()">Get Key</button>
+        <button id="getKeyBtn">Get Key</button>
     </div>
-<script>
-function openWin() {
-  window.open("https://linkvertise.com/1274270/hackerlovn");
-}
-</script>
+    <script>
+        document.getElementById('getKeyBtn').addEventListener('click', function () {
+            const hwid = "YourHWID"; // Replace with actual HWID logic if needed
+            const url = `https://linkvertise.com/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
+            window.location.href = url; // Redirect user
+        });
+    </script>
 </body>
 </html>
