@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Key</title>
+    <title>HWID Redirect and Key Retrieval</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,22 +40,38 @@
 </head>
 <body>
     <div class="key-button">
+        <button onclick="saveHWIDAndRedirect()">Go to Linkvertise</button>
         <button id="getKeyBtn">Get Key</button>
     </div>
+
     <script>
-        // Hàm lấy giá trị HWID từ URL
-        function getHWIDFromURL() {
+        // Lưu HWID vào LocalStorage và chuyển hướng đến Linkvertise
+        function saveHWIDAndRedirect() {
             const params = new URLSearchParams(window.location.search);
-            return params.get('hwid'); // Trả về giá trị HWID
+            const hwid = params.get('hwid'); // Lấy HWID từ URL
+
+            if (hwid) {
+                localStorage.setItem("hwid", hwid); // Lưu HWID vào LocalStorage
+                const linkvertiseURL = "https://linkvertise.com/1274270/hackerlovn"; // Linkvertise URL
+                window.location.href = linkvertiseURL; // Chuyển hướng
+            } else {
+                alert('Không tìm thấy HWID trong URL!');
+            }
         }
 
+        // Lấy giá trị HWID từ LocalStorage
+        function getHWIDFromLocalStorage() {
+            return localStorage.getItem("hwid");
+        }
+
+        // Xử lý khi nhấn nút "Get Key"
         document.getElementById('getKeyBtn').addEventListener('click', function () {
-            const hwid = getHWIDFromURL();
+            const hwid = getHWIDFromLocalStorage();
             if (hwid) {
                 const url = `https://direct-link.net/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
                 window.location.href = url; // Chuyển hướng người dùng
             } else {
-                alert('Không tìm thấy HWID trên URL!');
+                alert('Không tìm thấy HWID trong LocalStorage!');
             }
         });
     </script>
