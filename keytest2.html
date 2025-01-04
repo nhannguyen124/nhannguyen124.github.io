@@ -3,78 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web 2 - Key Verification</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4b79a1, #282c34);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .result-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        button {
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="result-box">
-        <h1>Verification Result</h1>
-        <p id="hwidDisplay">Loading...</p>
-        <p id="statusDisplay">Checking status...</p>
-        <button onclick="proceed()">Proceed</button>
-    </div>
-
+    <title>Retrieve HWID</title>
     <script>
-        // Lấy giá trị từ URL
-        function getQueryParam(param) {
-            const params = new URLSearchParams(window.location.search);
-            return params.get(param);
-        }
-
-        // Hiển thị HWID và trạng thái
-        const hwid = getQueryParam('hwid');
-        const status = getQueryParam('status');
-
-        document.getElementById('hwidDisplay').textContent = hwid 
-            ? `HWID: ${hwid}` 
-            : 'HWID not found!';
-        document.getElementById('statusDisplay').textContent = status === 'verified' 
-            ? 'Verification successful!' 
-            : 'Verification failed!';
-
-        // Xử lý khi nhấn Proceed
-        function proceed() {
-            if (status === 'verified') {
-                alert('Access granted! Proceeding...');
-                // Thực hiện logic tiếp theo (ví dụ: mở trang key, gửi API, v.v.)
-                const keyURL = `https://linkvertise.com/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
-                window.location.href = keyURL;
-            } else {
-                alert('Access denied! Please verify again.');
-            }
+        // Lấy HWID từ LocalStorage
+        const hwid = localStorage.getItem("hwid");
+        if (hwid) {
+            document.body.innerHTML = `<h1>Your HWID: ${hwid}</h1>`;
+        } else {
+            document.body.innerHTML = `<h1>No HWID found!</h1>`;
         }
     </script>
+</head>
+<body>
 </body>
 </html>
