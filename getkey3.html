@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4b79a1, #282c34);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Lấy HWID từ LocalStorage
+        const hwid = localStorage.getItem("hwid");
+
+        // Kiểm tra HWID và chuyển hướng
+        if (hwid) {
+            // URL mẫu với tham số HWID
+            const baseURL = "https://linkvertise.com/256687/557.0356279134165/dynamic"; // Thay đổi URL cơ sở nếu cần
+            const redirectURL = `${baseURL}?hwid=${encodeURIComponent(hwid)}&_r=2d8488b1ff8df6fb413f5eb213dbae64f9b72e64c26e5d360579d2fb319ca67c&r=aHR...`; // Cấu trúc URL
+            window.location.href = redirectURL; // Chuyển hướng đến URL
+        } else {
+            alert('Không tìm thấy HWID trong LocalStorage!');
+        }
+    </script>
+</body>
+</html>
