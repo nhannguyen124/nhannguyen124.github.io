@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HWID Redirect and Key Retrieval</title>
+    <title>Dynamic Redirect</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,64 +16,22 @@
             align-items: center;
             height: 100vh;
         }
-        .key-button {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
-    <div class="key-button">
-        <button onclick="saveHWIDAndRedirect()">Go to Linkvertise</button>
-        <button id="getKeyBtn">Get Key</button>
-    </div>
-
     <script>
-        // Lưu HWID vào LocalStorage và chuyển hướng đến Linkvertise
-        function saveHWIDAndRedirect() {
-            const params = new URLSearchParams(window.location.search);
-            const hwid = params.get('hwid'); // Lấy HWID từ URL
+        // Lấy HWID từ LocalStorage
+        const hwid = localStorage.getItem("hwid");
 
-            if (hwid) {
-                localStorage.setItem("hwid", hwid); // Lưu HWID vào LocalStorage
-                const linkvertiseURL = "https://linkvertise.com/1274270/hackerlovn"; // Linkvertise URL
-                window.location.href = linkvertiseURL; // Chuyển hướng
-            } else {
-                alert('Không tìm thấy HWID trong URL!');
-            }
+        // Kiểm tra HWID và chuyển hướng
+        if (hwid) {
+            // URL mẫu với tham số HWID
+            const baseURL = "https://direct-link.net/1274270/hackerlovn/";
+            const redirectURL = `${baseURL}?hwid=${encodeURIComponent(hwid)}&_r=2d8488b1ff8df6fb413f5eb213dbae64f9b72e64c26e5d360579d2fb319ca67c&r=aHR...`; // Cấu trúc URL
+            window.location.href = redirectURL; // Chuyển hướng đến URL
+        } else {
+            alert('Không tìm thấy HWID trong LocalStorage!');
         }
-
-        // Lấy giá trị HWID từ LocalStorage
-        function getHWIDFromLocalStorage() {
-            return localStorage.getItem("hwid");
-        }
-
-        // Xử lý khi nhấn nút "Get Key"
-        document.getElementById('getKeyBtn').addEventListener('click', function () {
-            const hwid = getHWIDFromLocalStorage();
-            if (hwid) {
-                const url = `https://direct-link.net/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
-                window.location.href = url; // Chuyển hướng người dùng
-            } else {
-                alert('Không tìm thấy HWID trong LocalStorage!');
-            }
-        });
     </script>
 </body>
 </html>
