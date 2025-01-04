@@ -43,10 +43,20 @@
         <button id="getKeyBtn">Get Key</button>
     </div>
     <script>
+        // Hàm lấy giá trị HWID từ URL hiện tại
+        function getHWIDFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('hwid'); // Trả về giá trị của hwid
+        }
+
         document.getElementById('getKeyBtn').addEventListener('click', function () {
-            const hwid = "YourHWID"; // Replace with actual HWID logic if needed
-            const url = `https://linkvertise.com/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
-            window.location.href = url; // Redirect user
+            const hwid = getHWIDFromURL();
+            if (hwid) {
+                const url = `https://linkvertise.com/1274270/hackerlovn?hwid=${encodeURIComponent(hwid)}`;
+                window.location.href = url;
+            } else {
+                alert('HWID không tồn tại trên URL!');
+            }
         });
     </script>
 </body>
