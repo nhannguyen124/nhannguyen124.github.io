@@ -3,52 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Key from Lootlap API</title>
+    <title>Lootlabs URL Encryptor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        input, button {
+        input, button, textarea {
             margin: 10px 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: none;
         }
     </style>
 </head>
 <body>
-    <h1>Retrieve Key from Lootlap API</h1>
-    <label for="input-api-key">Enter API Token:</label><br>
-    <input type="text" id="input-api-key" placeholder="Enter your API token" style="width: 100%;"><br>
-    <button id="fetch-key">Get Key</button>
+    <h1>Lootlabs URL Encryptor</h1>
+    <label for="api-token">API Token:</label>
+    <input type="text" id="api-token" placeholder="Enter your API token">
+    
+    <label for="destination-url">Destination URL:</label>
+    <input type="text" id="destination-url" placeholder="Enter the URL to encrypt">
+    
+    <button id="send-request">Encrypt URL</button>
+    
     <h3>Response:</h3>
-    <pre id="response" style="background: #f9f9f9; padding: 10px; border: 1px solid #ddd;"></pre>
-
+    <textarea id="response" rows="10" readonly></textarea>
+    
     <script>
-        document.getElementById('fetch-key').addEventListener('click', async () => {
-            const apiKey = document.getElementById('input-api-key').value;
+        document.getElementById('send-request').addEventListener('click', async () => {
+            const apiToken = document.getElementById('api-token').value;
+            const destinationUrl = document.getElementById('destination-url').value;
             const responseElement = document.getElementById('response');
-
-            if (!apiKey) {
-                responseElement.textContent = "Please enter an API key!";
+            
+            if (!apiToken || !destinationUrl) {
+                responseElement.value = "Please provide both the API token and destination URL.";
                 return;
             }
 
+            // API endpoint
+            const url = 'https://be.lootlabs.gg/api/lootlabs/url_encryptor';
+
             try {
-                const response = await fetch('https://lootlap-api-endpoint.com/getkey', {
-                    method: 'GET', // or 'POST', depending on the API
+                // Send POST request
+                const response = await fetch(url, {
+                    method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${apiKey}`, // Adjust as per API docs
+                        'Authorization': `Bearer ${apiToken}`,
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    body: JSON.stringify({ destination_url: destinationUrl })
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    throw new Error(`HTTP Error: ${response.status}`);
                 }
 
                 const data = await response.json();
-                responseElement.textContent = JSON.stringify(data, null, 2);
+                responseElement.value = JSON.stringify(data, null, 2);
             } catch (error) {
-                responseElement.textContent = `Error: ${error.message}`;
+                responseElement.value = `Error: ${error.message}`;
             }
         });
     </script>
