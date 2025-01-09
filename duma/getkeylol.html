@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script data-cfasync="false" src="//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1139714"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lootlabs URL Encryptor</title>
@@ -19,6 +18,10 @@
         textarea {
             resize: none;
         }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -34,14 +37,26 @@
     <h3>Response:</h3>
     <textarea id="response" rows="10" readonly></textarea>
     
+    <p id="error-message" class="error"></p>
+    
     <script>
         document.getElementById('send-request').addEventListener('click', async () => {
-            const apiToken = document.getElementById('api-token').value;
-            const destinationUrl = document.getElementById('destination-url').value;
+            const apiToken = document.getElementById('api-token').value.trim();
+            const destinationUrl = document.getElementById('destination-url').value.trim();
             const responseElement = document.getElementById('response');
+            const errorMessage = document.getElementById('error-message');
             
-            if (!apiToken || !destinationUrl) {
-                responseElement.value = "Please provide both the API token and destination URL.";
+            responseElement.value = '';
+            errorMessage.textContent = '';
+            
+            // Validate input
+            if (!apiToken) {
+                errorMessage.textContent = "API Token is required.";
+                return;
+            }
+
+            if (!destinationUrl || !isValidUrl(destinationUrl)) {
+                errorMessage.textContent = "Please enter a valid URL.";
                 return;
             }
 
@@ -60,15 +75,26 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP Error: ${response.status}`);
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || `HTTP Error: ${response.status}`);
                 }
 
                 const data = await response.json();
                 responseElement.value = JSON.stringify(data, null, 2);
             } catch (error) {
-                responseElement.value = `Error: ${error.message}`;
+                errorMessage.textContent = `Error: ${error.message}`;
             }
         });
+
+        // Validate URL
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
     </script>
 </body>
 </html>
