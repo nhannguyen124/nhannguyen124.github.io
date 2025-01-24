@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nạp Thẻ Cào</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 400px;
+            margin: auto;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Nạp Thẻ Cào</h2>
+<form id="handlePayment">
+    <input type="text" id="card_code" placeholder="Nhập mã thẻ cào" required>
+    <input type="text" id="card_seri" placeholder="Nhập số seri" required>
+    <button type="submit" id="btnSubmitAjax">Nạp Thẻ</button>
+</form>
+<p id="message"></p>
+
+<script>
+$(document).on("submit", "#handlePayment", function() {
+    var e = this;
+    $('#btnSubmitAjax').prop('disabled', true);
+    
+    var card_code = $('#handlePayment #card_code').val().trim();
+    var card_seri = $('#handlePayment #card_seri').val().trim();
+    
+    if (card_code === '' || card_seri === '') {
+        showError('Mã thẻ và Seri thẻ không được để trống');
+        return false;
+    }
+    
+    if (containsSpace(card_code) || containsSpace(card_seri)) {
+        showError('Mã thẻ và Seri thẻ không được chứa ký tự khoảng trắng');
+        return false;
+    }
+    
+    if (!isNumeric(card_code) || !isNumeric(card_seri)) {
+        showError('Mã thẻ và Seri thẻ phải là số');
+        return false;
+    }
+    
+    $(this).find("[type='submit']").html("ĐANG NẠP THẺ...");
+    
+    // Gửi dữ liệu đến server (thay action bằng URL thực tế của bạn)
+    $.post('/path/to/your/api', $(this).serialize(), function(data) {
+        $(e).find("[type='submit']").html("Nạp Thẻ");
+        if (data.status) {
+            Swal.fire(data.msg, 'Thẻ lỗi!', 'error');
+            location.reload();
+        } else {
+            alert(data.msg);
+            $('#btnSubmitAjax').prop('disabled', false);
+        }
+    }).fail(function(response) {
+        $(e).find("[type='submit']").html("Nạp Thẻ");
+        console.log(response);
+    });
+    
+    return false;
+});
+
+// Hàm hiển thị thông báo lỗi
+function showError(message) {
+    Swal.fire(message, 'Thẻ lỗi!', 'error');
+    $('#btnSubmitAjax').prop('disabled', false);
+}
+
+// Hàm kiểm tra ký tự khoảng trắng
+function containsSpace(str) {
+    return str.indexOf(" ") > -1;
+}
+
+// Hàm kiểm tra xem chuỗi có phải là số hay không
+function isNumeric(str) {
+    return /^\d+$/.test(str);
+}
+</script>
+
+</body>
+</html>
