@@ -35,19 +35,20 @@ document.querySelectorAll('.product button').forEach(button => {
 // Xử lý nạp thẻ cào
 document.getElementById('recharge-form').addEventListener('submit', (event) => {
     event.preventDefault(); // Ngăn chặn hành động mặc định của form
-    const cardCode = document.getElementById('card-code').value.trim(); // Lấy mã thẻ cào và loại bỏ khoảng trắng
+    const serialCode = document.getElementById('serial-code').value.trim(); // Lấy số seri
+    const cardCode = document.getElementById('card-code').value.trim(); // Lấy mã thẻ cào
 
-    // Kiểm tra mã thẻ cào (thay thế bằng logic kiểm tra thực tế nếu cần)
-    if (validateCardCode(cardCode)) {
+    // Kiểm tra số seri và mã thẻ cào (thay thế bằng logic kiểm tra thực tế nếu cần)
+    if (validateCard(serialCode, cardCode)) {
         document.getElementById('message').innerText = "Nạp thẻ cào thành công!";
         // Logic xử lý sau khi nạp thẻ thành công, như cập nhật số dư
     } else {
-        document.getElementById('message').innerText = "Mã thẻ cào không hợp lệ. Vui lòng thử lại.";
+        document.getElementById('message').innerText = "Số seri hoặc mã thẻ cào không hợp lệ. Vui lòng thử lại.";
     }
 });
 
-// Hàm giả định kiểm tra mã thẻ cào (thay thế bằng logic thực tế)
-function validateCardCode(code) {
-    // Giả sử mã thẻ cào hợp lệ nếu nó có độ dài 10 ký tự
-    return code.length === 10; // Kiểm tra chiều dài, bạn có thể thay đổi theo yêu cầu của bạn
+// Hàm giả định kiểm tra số seri và mã thẻ cào (thay thế bằng logic thực tế)
+function validateCard(serial, code) {
+    // Giả sử mã thẻ cào hợp lệ nếu nó có độ dài 10 ký tự và số seri có độ dài 8 ký tự
+    return serial.length === 8 && code.length === 10; // Kiểm tra chiều dài
 }
