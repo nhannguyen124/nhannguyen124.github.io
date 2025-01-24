@@ -1,4 +1,3 @@
-// script.js
 let cart = [];
 
 // Hàm thêm sản phẩm vào giỏ hàng
@@ -32,3 +31,22 @@ document.querySelectorAll('.product button').forEach(button => {
         addToCart(productName, price);
     });
 });
+
+// Xử lý nạp thẻ
+document.getElementById('recharge-form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Ngăn chặn hành động mặc định của form
+    const cardCode = document.getElementById('card-code').value;
+    
+    // Kiểm tra mã thẻ (thay thế bằng logic kiểm tra thực tế nếu cần)
+    if (validateCardCode(cardCode)) {
+        document.getElementById('message').innerText = "Nạp thẻ thành công!";
+    } else {
+        document.getElementById('message').innerText = "Mã thẻ không hợp lệ. Vui lòng thử lại.";
+    }
+});
+
+// Hàm giả định kiểm tra mã thẻ (thay thế bằng logic thực tế)
+function validateCardCode(code) {
+    // Giả sử mã thẻ hợp lệ nếu nó có độ dài 10 ký tự
+    return code.length === 10;
+}
