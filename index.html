@@ -195,6 +195,31 @@
                 box-shadow: none !important;
             }
         }
+
+        /* Chế độ xoay ngang toàn màn hình cho 3D Exhibition trên Mobile */
+        #exhibition-embed-wrapper.landscape-fullscreen {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99999 !important;
+            padding-top: 0 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            background: #000;
+        }
+
+        /* Tự động xoay ngang 90 độ khi người dùng cầm dọc điện thoại (Portrait) */
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            #exhibition-embed-wrapper.landscape-fullscreen {
+                width: 100vh !important;
+                height: 100vw !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) rotate(90deg) !important;
+                transform-origin: center center !important;
+            }
+        }
     </style>
 </head>
 <body class="paper-texture transition-colors duration-300 pb-24">
@@ -719,13 +744,12 @@
     </section>
 
     <!-- =====================================================================
-         PHÂN KHU 3: TRIỂN LÃM ẢO "THANH XUÂN CÓ THẦY CÔ"
-         (DUY NHẤT KHÔNG GIAN TRIỂN LÃM 3D TRƯNG BÀY ẢNH KỶ NIỆM)
+         PHÂN KHU 3: TRIỂN LÃM ẢO "THANH XUÂN CÓ THẦY CÔ" (EMBED 3D EXHIBITION)
          ===================================================================== -->
     <section id="zone-exhibition" class="py-16 sm:py-20 border-b border-paper-border dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-6 gap-4">
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tribute-crimson/10 dark:bg-amber-500/20 text-tribute-crimson dark:text-amber-300 text-xs font-bold uppercase tracking-widest mb-3">
                         <span>Phân Khu Bắt Buộc 03</span>
@@ -736,115 +760,46 @@
                         Triển Lãm Ảo “Thanh Xuân Có Thầy Cô”
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-2xl">
-                        Không gian trưng bày 3D lưu giữ những bức ảnh kỷ niệm và khoảnh khắc gắn bó giữa Thầy Cô cùng học sinh dưới mái <strong>Trường THPT Chuyên Quang Trung</strong>. Chạm vào từng khung tranh trong phòng 3D để xem cận cảnh hoặc tải ảnh thực tế của trường lên.
+                        Không gian trưng bày 3D lưu giữ những bức ảnh kỷ niệm và khoảnh khắc gắn bó giữa Thầy Cô cùng học sinh dưới mái <strong>Trường THPT Chuyên Quang Trung</strong>. Nhấn nút <strong>Xoay Ngang Toàn Màn Hình</strong> để trải nghiệm góc nhìn rộng nhất trên điện thoại.
                     </p>
                 </div>
+
+                <!-- Nút điều khiển Xoay ngang & Mở tab riêng -->
                 <div class="flex flex-wrap items-center gap-2.5">
-                    <label for="batch-gallery-upload-top" class="cursor-pointer px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-md flex items-center gap-2 transition">
-                        <i class="fa-solid fa-folder-plus"></i>
-                        <span>Tải Nhiều Ảnh Trường Cùng Lúc</span>
-                        <input id="batch-gallery-upload-top" type="file" accept="image/*" multiple class="hidden" onchange="handleBatchGalleryUpload(event)">
-                    </label>
-                    <button onclick="openGalleryManagerModal()" class="px-4 py-2.5 rounded-2xl bg-tribute-crimson hover:bg-tribute-darkRed text-white text-xs sm:text-sm font-semibold shadow-md flex items-center gap-2 transition">
-                        <i class="fa-solid fa-images"></i>
-                        <span>Quản Lý & Thay Ảnh (08 Khung)</span>
+                    <button onclick="toggleExhibitionLandscape()" class="px-4 py-2.5 rounded-2xl bg-tribute-crimson hover:bg-tribute-darkRed text-white text-xs sm:text-sm font-semibold shadow-md flex items-center gap-2 transition">
+                        <i class="fa-solid fa-mobile-screen-button rotate-90"></i>
+                        <span>Xoay Ngang Toàn Màn Hình (Mobile)</span>
                     </button>
+                    <a href="https://e.fliphtml5.com/kcnrc/skvr/index.html" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-2xl bg-paper-warm dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-slate-700 text-tribute-navy dark:text-amber-300 border border-paper-border dark:border-slate-700 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                        <span>Mở Tab Riêng</span>
+                    </a>
                 </div>
             </div>
-            <div style="position:relative;padding-top:max(60%,324px);width:90%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://e.fliphtml5.com/kcnrc/skvr/index.html" title="Panoramic Glassfront Exhibition Template" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div>
 
-            <!-- UNIFIED 3D VIRTUAL EXHIBITION SPACE
-            <div id="three-gallery-wrapper" class="rounded-3xl bg-slate-950 text-white border-2 border-amber-500/40 shadow-2xl overflow-hidden">
-                <!-- 3D Gallery Top Control Bar
-                <div class="px-4 sm:px-6 py-4 bg-slate-900/95 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center text-lg shadow-md">
-                            <i class="fa-solid fa-cubes"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <h3 class="font-serif font-bold text-base sm:text-xl text-white">Không Gian Triển Lãm 3D – Dấu Ấn THPT Chuyên Quang Trung</h3>
-                                <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 text-[10px] font-bold uppercase tracking-wider chi-doan-display">Chi đoàn 12H - Khóa HK22</span>
-                            </div>
-                            <p class="text-[11px] sm:text-xs text-slate-400">Kéo chuột hoặc vuốt cảm ứng để xoay góc nhìn 360° • Nhấn trực tiếp vào khung tranh để xem ảnh sắc nét</p>
-                        </div>
-                    </div>
+            <!-- Khung Embed 3D Exhibition Chuẩn Responsive & Hỗ trợ Xoay ngang -->
+            <div id="exhibition-embed-wrapper" class="relative w-full rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-2xl bg-slate-950 transition-all duration-300" style="padding-top: max(62%, 460px);">
+                <!-- Nút Thoát chế độ xoay ngang (chỉ hiện khi đang phóng to xoay ngang) -->
+                <button id="exit-landscape-btn" onclick="toggleExhibitionLandscape()" class="hidden absolute top-3 right-3 z-50 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-rose-600 text-white border border-amber-400/50 text-xs font-bold shadow-lg items-center gap-1.5 backdrop-blur-md transition">
+                    <i class="fa-solid fa-compress"></i>
+                    <span>Thoát Xoay Ngang</span>
+                </button>
 
-                    <!-- Mode Switchers, Auto-Tour & Fullscreen
-                    <div class="flex flex-wrap items-center gap-2">
-                        <div class="inline-flex rounded-xl bg-slate-800 p-1 border border-white/10">
-                            <button id="mode-room-btn" onclick="switch3DGalleryLayout('room')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400 text-slate-950 transition flex items-center gap-1.5">
-                                <i class="fa-solid fa-landmark"></i> Phòng Trưng Bày 3D
-                            </button>
-                            <button id="mode-ring-btn" onclick="switch3DGalleryLayout('ring')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5">
-                                <i class="fa-solid fa-circle-nodes"></i> Vòng Xoay 360°
-                            </button>
-                        </div>
-
-                        <button id="auto-tour-btn" onclick="toggle3DAutoTour()" class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/40 text-xs font-semibold flex items-center gap-1.5 transition">
-                            <i id="auto-tour-icon" class="fa-solid fa-pause"></i>
-                            <span id="auto-tour-text">Đang Dạo Bước</span>
-                        </button>
-
-                        <button onclick="toggle3DFullscreen()" title="Xem toàn màn hình" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs font-semibold flex items-center gap-1.5 transition">
-                            <i id="fullscreen-icon" class="fa-solid fa-expand text-amber-300"></i>
-                            <span class="hidden sm:inline">Toàn màn hình</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 3D WebGL Viewport Container
-                <div id="three-gallery-container" class="relative select-none">
-                    <!-- Museum Overhead Spotlight Ambient Beams 
-                    <div class="absolute inset-0 museum-spotlight-beam z-10"></div>
-
-                    <!-- Top-Left Active Artwork HUD Overlay
-                    <div class="absolute top-4 left-4 z-20 max-w-xs sm:max-w-sm bg-slate-950/75 backdrop-blur-md border border-amber-400/30 rounded-2xl p-3.5 pointer-events-auto shadow-lg">
-                        <div class="flex items-center justify-between gap-2 text-[11px] text-amber-300 font-bold uppercase tracking-wider mb-1">
-                            <span id="hud-frame-index">KHUNG TRANH 01 / 08</span>
-                            <span id="hud-frame-badge" class="px-2 py-0.5 rounded bg-amber-400/20 text-amber-200 text-[10px]">Cổng Trường</span>
-                        </div>
-                        <h4 id="hud-frame-title" class="font-serif font-bold text-sm sm:text-base text-white leading-snug">Cổng Trường THPT Chuyên Quang Trung Mùa Nắng</h4>
-                        <p id="hud-frame-meta" class="text-[11px] text-slate-300 mt-1 line-clamp-2">Biểu tượng tự hào của bao thế hệ học sinh chuyên tại Đồng Xoài.</p>
-                        <div class="mt-2.5 flex items-center gap-2">
-                            <button onclick="openActiveFrameLightbox()" class="px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition">
-                                <i class="fa-solid fa-magnifying-glass-plus"></i> Xem Chi Tiết
-                            </button>
-                            <label for="quick-hud-upload" class="cursor-pointer px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-xs flex items-center gap-1.5 border border-white/15 transition">
-                                <i class="fa-solid fa-upload text-amber-300"></i> Thay Ảnh Này
-                                <input id="quick-hud-upload" type="file" accept="image/*" class="hidden" onchange="handleSingleFrameUpload(event, activeArtworkIndex)">
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Navigation Arrows Over Canvas
-                    <div class="absolute bottom-4 right-4 z-20 flex items-center gap-2">
-                        <button onclick="stepArtwork(-1)" class="w-10 h-10 rounded-xl bg-slate-900/85 hover:bg-amber-400 hover:text-slate-950 text-white border border-white/20 flex items-center justify-center transition shadow-lg" title="Tác phẩm trước">
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </button>
-                        <button onclick="reset3DCamera()" class="px-3 h-10 rounded-xl bg-slate-900/85 hover:bg-slate-800 text-amber-300 border border-white/20 text-xs font-semibold flex items-center gap-1.5 transition shadow-lg" title="Đặt lại góc nhìn">
-                            <i class="fa-solid fa-compass"></i> Góc nhìn chuẩn
-                        </button>
-                        <button onclick="stepArtwork(1)" class="w-10 h-10 rounded-xl bg-slate-900/85 hover:bg-amber-400 hover:text-slate-950 text-white border border-white/20 flex items-center justify-center transition shadow-lg" title="Tác phẩm tiếp theo">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 8 Artworks Quick Thumbnail Strip
-                <div class="p-4 sm:px-6 bg-slate-900 border-t border-white/10">
-                    <div class="flex items-center justify-between mb-2.5">
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-grip"></i> Danh mục 08 khung tranh trong phòng triển lãm (Nhấn để di chuyển camera đến tranh)
-                        </span>
-                        <button onclick="openGalleryManagerModal()" class="text-xs text-amber-300 hover:underline flex items-center gap-1">
-                            <i class="fa-solid fa-pen-to-square"></i> Sửa tiêu đề & thay ảnh hàng loạt
-                        </button>
-                    </div>
-                    <div id="gallery-thumbnails-strip" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
-                        <!-- Populated dynamically via JS
-                    </div>
-                </div>
+                <iframe 
+                    id="exhibition-iframe"
+                    style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" 
+                    src="https://e.fliphtml5.com/kcnrc/skvr/index.html" 
+                    title="Panoramic Glassfront Exhibition Template" 
+                    loading="lazy"
+                     seamless="seamless" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="fullscreen; accelerometer; gyroscope; autoplay" 
+                    allowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    mozallowfullscreen="true">
+                </iframe>
             </div>
         </div>
     </section>
@@ -2538,15 +2493,71 @@
         }
 
         /* -------------------------------------------------------------------
-           8. INITIALIZATION ON WINDOW LOAD
+           8. XOAY NGANG 3D EXHIBITION TRÊN ĐIỆN THOẠI & KHỞI TẠO TRANG
            ------------------------------------------------------------------- */
+        let isExhibitionLandscape = false;
+
+        async function toggleExhibitionLandscape() {
+            const wrapper = document.getElementById('exhibition-embed-wrapper');
+            const exitBtn = document.getElementById('exit-landscape-btn');
+            isExhibitionLandscape = !isExhibitionLandscape;
+
+            if (isExhibitionLandscape) {
+                wrapper.classList.add('landscape-fullscreen');
+                exitBtn.classList.remove('hidden');
+                exitBtn.classList.add('inline-flex');
+                document.body.style.overflow = 'hidden';
+
+                try {
+                    if (wrapper.requestFullscreen) {
+                        await wrapper.requestFullscreen();
+                    } else if (wrapper.webkitRequestFullscreen) {
+                        await wrapper.webkitRequestFullscreen();
+                    }
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('landscape');
+                    }
+                } catch (err) {
+                    // Trên iOS Safari không hỗ trợ orientation.lock, CSS rotate(90deg) sẽ tự động đảm nhận
+                }
+            } else {
+                wrapper.classList.remove('landscape-fullscreen');
+                exitBtn.classList.add('hidden');
+                exitBtn.classList.remove('inline-flex');
+                document.body.style.overflow = '';
+
+                try {
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                    if (document.fullscreenElement && document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    }
+                } catch (err) {}
+            }
+        }
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && isExhibitionLandscape) {
+                const wrapper = document.getElementById('exhibition-embed-wrapper');
+                const exitBtn = document.getElementById('exit-landscape-btn');
+                isExhibitionLandscape = false;
+                wrapper.classList.remove('landscape-fullscreen');
+                exitBtn.classList.add('hidden');
+                exitBtn.classList.remove('inline-flex');
+                document.body.style.overflow = '';
+            }
+        });
+
         window.onload = function () {
             renderTimeline();
             renderArticles('all');
-            loadGalleryArtworks();
-            init3DGallery();
-            updateGalleryHUDAndThumbnails();
-            animate3DGallery();
+            if (document.getElementById('three-gallery-container')) {
+                loadGalleryArtworks();
+                init3DGallery();
+                updateGalleryHUDAndThumbnails();
+                animate3DGallery();
+            }
         };
     </script>
 </body>
