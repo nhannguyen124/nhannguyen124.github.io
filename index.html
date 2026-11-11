@@ -1025,7 +1025,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center bg-white/10 p-4 sm:p-5 rounded-2xl border border-white/15">
                     <div class="sm:col-span-5 flex flex-col items-center bg-white p-3 rounded-xl text-slate-900">
-                        <img id="poster-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://chuyenquangtrung-20-11-2026.edu.vn" alt="QR Code Truy Cập Không Gian Số" class="w-36 h-36 object-contain">
+                        <img id="poster-qr-img" src="qrcode.png" alt="QR Code Truy Cập Không Gian Số" class="w-36 h-36 object-contain">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-tribute-crimson mt-2">Quét Mã QR Trải Nghiệm</span>
                     </div>
                     <div class="sm:col-span-7 space-y-2.5 text-xs sm:text-sm">
@@ -2474,8 +2474,8 @@
         }
 
         function updatePosterQR(url) {
-            const cleanUrl = (url && url.trim()) ? url.trim() : "https://chuyenquangtrung-20-11-2026.edu.vn";
-            document.getElementById('poster-qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(cleanUrl)}`;
+            const cleanUrl = (url && url.trim()) ? url.trim() : "https://nhannguyen124.github.io/";
+            document.getElementById('poster-qr-img').src = `qrcode.png`;
         }
 
         function copyPosterLink() {
