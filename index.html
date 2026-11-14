@@ -265,7 +265,7 @@
                 <a href="#zone-history" class="px-4 py-1.5 rounded-full text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 hover:text-tribute-crimson transition flex items-center gap-1.5">
                     <span class="w-5 h-5 rounded-full bg-tribute-crimson/10 dark:bg-amber-500/20 text-tribute-crimson dark:text-amber-300 text-xs flex items-center justify-center font-bold">1</span>
                     Phân Khu 1: Lịch Sử 20/11
-                </a>    
+                </a>
                 <a href="#zone-emagazine" class="px-4 py-1.5 rounded-full text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 hover:text-tribute-crimson transition flex items-center gap-1.5">
                     <span class="w-5 h-5 rounded-full bg-tribute-crimson/10 dark:bg-amber-500/20 text-tribute-crimson dark:text-amber-300 text-xs flex items-center justify-center font-bold">2</span>
                     Phân Khu 2: E-Magazine
@@ -607,7 +607,7 @@
                                 </div>
                                 <ul class="text-xs text-slate-700 dark:text-slate-200 space-y-1.5">
                                     <li>• Phòng triển lãm 3D tương tác 360° trưng bày kỷ niệm trường lớp.</li>
-                                    <li>• Tạp chí E-Magazine tích hợp Podcast & Giai điệu Piano số.</li>
+                                    <li>• Tạp chí E-Magazine tích hợp Video & Giai điệu MP3.</li>
                                     <li>• Lan tỏa thuận tiện qua Mã QR trên Poster A4 trưng bày.</li>
                                 </ul>
                             </div>
@@ -643,14 +643,8 @@
 
                 <!-- Category Filter Buttons -->
                 <div class="flex flex-wrap gap-2" id="emag-filters">
-                    <button onclick="filterArticles('all')" data-filter="all" class="emag-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-tribute-crimson text-white shadow-sm transition">
-                        Tất cả chuyên mục
-                    </button>
                     <button onclick="filterArticles('tan-van')" data-filter="tan-van" class="emag-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-paper-warm dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-100 transition">
                         Tản văn & Thơ
-                    </button>
-                    <button onclick="filterArticles('phong-van')" data-filter="phong-van" class="emag-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-paper-warm dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-100 transition">
-                        Góc Phỏng vấn Thầy Cô
                     </button>
                     <button onclick="filterArticles('multimedia')" data-filter="multimedia" class="emag-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-paper-warm dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-100 transition">
                         Video & Infographic
@@ -663,8 +657,11 @@
                 <!-- Populated dynamically via JS -->
             </div>
 
-            <!-- PODCAST & STUDIO ĐĨA THAN (VINYL TURNTABLE EXPERIENCE) -->
+            <!-- PODCAST & STUDIO ĐĨA THAN (VINYL TURNTABLE EXPERIENCE - SINGLE MP3) -->
             <div class="rounded-3xl bg-gradient-to-r from-[#1D3557] via-[#162844] to-[#2B192E] text-white p-6 sm:p-10 shadow-xl border border-amber-400/20 relative overflow-hidden">
+                <!-- Thẻ Audio nạp file MP3 -->
+                <audio id="bg-music-player" src="Mái Trường Quang Trung.mp3" preload="auto" loop></audio>
+
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                     <!-- Spinning Vinyl Graphic (4 cols) -->
                     <div class="lg:col-span-4 flex flex-col items-center">
@@ -686,56 +683,40 @@
                         </div>
 
                         <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs">
-                            <i class="fa-solid fa-copyright"></i>
-                            <span>Âm thanh Web Audio Synthesizer – 100% Bản quyền sạch</span>
+                            <i class="fa-solid fa-compact-disc"></i>
+                            <span>Giai điệu Tri Ân 20/11 • Bản thu MP3</span>
                         </div>
                     </div>
 
-                    <!-- Podcast Playlist & Controls (8 cols) -->
+                    <!-- Single Song Player & Controls (8 cols) -->
                     <div class="lg:col-span-8 space-y-5">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Trải Nghiệm Đa Giác Quan • Podcast & Giai Điệu</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Trải Nghiệm Đa Giác Quan • Giai Điệu Tri Ân</span>
                                 <h3 class="font-serif text-2xl sm:text-3xl font-bold mt-1">Đài Phát Thanh Thanh Xuân Quang Trung</h3>
                             </div>
                             <button onclick="toggleAudioPlayback()" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-tribute-navy font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition">
                                 <i id="studio-play-icon" class="fa-solid fa-play"></i>
-                                <span id="studio-play-text">Phát Giai Điệu</span>
+                                <span id="studio-play-text">Phát Bài Hát</span>
                             </button>
                         </div>
 
                         <p id="current-track-desc" class="text-xs sm:text-sm text-slate-200 leading-relaxed bg-white/5 p-4 rounded-2xl border border-white/10 italic">
-                            “Giai điệu Piano & Music Box tự tổng hợp bằng công nghệ Web Audio API, lấy cảm hứng từ tiếng chuông vào lớp và những buổi chiều tự học bình yên tại trường THPT Chuyên Quang Trung.”
+                            “Giai điệu tri ân sâu lắng gửi tặng Quý Thầy Cô trường THPT Chuyên Quang Trung nhân kỷ niệm 44 năm Ngày Nhà giáo Việt Nam 20/11.”
                         </p>
 
-                        <!-- Tracklist Selector -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <button onclick="selectTrack(0)" id="track-btn-0" class="track-btn text-left p-3.5 rounded-2xl bg-white/15 border border-amber-400/60 transition hover:bg-white/20">
-                                <div class="flex items-center justify-between text-xs text-amber-300 font-bold mb-1">
-                                    <span>TRACK 01 • PIANO</span>
+                        <!-- Khung hiển thị 1 bài hát duy nhất -->
+                        <div class="p-4 rounded-2xl bg-white/15 border border-amber-400/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-12 h-12 rounded-xl bg-amber-400 text-tribute-navy flex items-center justify-center text-lg font-bold shrink-0">
                                     <i class="fa-solid fa-music"></i>
                                 </div>
-                                <div class="font-semibold text-sm text-white">Hạt Nắng Sân Trường</div>
-                                <div class="text-[11px] text-slate-300 mt-0.5">Nhạc nền Acoustic Tri ân</div>
-                            </button>
-
-                            <button onclick="selectTrack(1)" id="track-btn-1" class="track-btn text-left p-3.5 rounded-2xl bg-white/5 border border-white/10 transition hover:bg-white/15">
-                                <div class="flex items-center justify-between text-xs text-amber-300 font-bold mb-1">
-                                    <span>PODCAST 01</span>
-                                    <i class="fa-solid fa-microphone-lines"></i>
+                                <div>
+                                    <div class="text-xs text-amber-300 font-bold uppercase tracking-wider">CA KHÚC CHỦ ĐỀ 20/11</div>
+                                    <div class="font-semibold text-base text-white">Giai Điệu Tri Ân Thầy Cô</div>
+                                    <div class="text-xs text-slate-300 mt-0.5"><span class="chi-doan-display">Chi đoàn 12H - Khóa HK22</span> • THPT Chuyên Quang Trung</div>
                                 </div>
-                                <div class="font-semibold text-sm text-white">Chuyện Chưa Kể Về Thầy Cô</div>
-                                <div class="text-[11px] text-slate-300 mt-0.5">Giai điệu Lofi & Lời dẫn</div>
-                            </button>
-
-                            <button onclick="selectTrack(2)" id="track-btn-2" class="track-btn text-left p-3.5 rounded-2xl bg-white/5 border border-white/10 transition hover:bg-white/15">
-                                <div class="flex items-center justify-between text-xs text-amber-300 font-bold mb-1">
-                                    <span>KHÚC CA 20/11</span>
-                                    <i class="fa-solid fa-sliders"></i>
-                                </div>
-                                <div class="font-semibold text-sm text-white">Khúc Ca Người Gieo Hạt</div>
-                                <div class="text-[11px] text-slate-300 mt-0.5">Giai điệu tri ân tập thể lớp</div>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -791,7 +772,7 @@
                     src="https://e.fliphtml5.com/kcnrc/skvr/index.html" 
                     title="Panoramic Glassfront Exhibition Template" 
                     loading="lazy"
-                     seamless="seamless" 
+                    seamless="seamless" 
                     scrolling="no" 
                     frameborder="0" 
                     allowtransparency="true" 
@@ -857,7 +838,7 @@
             </button>
             <div class="pr-2">
                 <div class="flex items-center gap-1.5">
-                    <span class="text-xs font-bold text-tribute-navy dark:text-white" id="floating-track-name">Hạt Nắng Sân Trường</span>
+                    <span class="text-xs font-bold text-tribute-navy dark:text-white" id="floating-track-name">Giai Điệu Tri Ân Thầy Cô</span>
                     <div id="floating-eq" class="flex items-end gap-0.5 h-3">
                         <div class="eq-bar h-1"></div>
                         <div class="eq-bar h-2"></div>
@@ -865,7 +846,7 @@
                         <div class="eq-bar h-1"></div>
                     </div>
                 </div>
-                <span class="block text-[10px] text-slate-500 dark:text-slate-400">Giai điệu Piano Tri ân 20/11</span>
+                <span class="block text-[10px] text-slate-500 dark:text-slate-400">Bản thu MP3 • Tri ân 20/11</span>
             </div>
         </div>
 
@@ -1028,6 +1009,7 @@
                         <img id="poster-qr-img" src="qrcode.png" alt="QR Code Truy Cập Không Gian Số" class="w-36 h-36 object-contain">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-tribute-crimson mt-2">Quét Mã QR Trải Nghiệm</span>
                     </div>
+                    
                     <div class="sm:col-span-7 space-y-2.5 text-xs sm:text-sm">
                         <div class="inline-block px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-xs chi-doan-display">
                             Chi đoàn 12H - Khóa HK22
@@ -1089,7 +1071,7 @@
             <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 <li><strong class="text-tribute-navy dark:text-amber-300">1. Cảm xúc chân thật:</strong> Toàn bộ bài viết, thơ, phỏng vấn và kỷ niệm trưng bày trong triển lãm 3D đều xuất phát từ tình cảm, kỷ niệm thật của tập thể lớp đối với Thầy Cô.</li>
                 <li><strong class="text-tribute-navy dark:text-amber-300">2. Hình ảnh & Ngôn từ chuẩn mực:</strong> Sử dụng ngôn ngữ trong sáng, lịch sự; hình ảnh trang trọng, tôn vinh vẻ đẹp sư phạm dưới mái trường THPT Chuyên Quang Trung.</li>
-                <li><strong class="text-tribute-navy dark:text-amber-300">3. Tôn trọng bản quyền:</strong> Âm nhạc trên trang được tổng hợp trực tiếp bằng Web Audio API hoàn toàn sạch bản quyền.</li>
+                <li><strong class="text-tribute-navy dark:text-amber-300">3. Tôn trọng bản quyền:</strong> Âm nhạc và tư liệu đa phương tiện được chọn lọc trang trọng phục vụ mục đích giáo dục phi lợi nhuận.</li>
                 <li><strong class="text-tribute-navy dark:text-amber-300">4. Kiểm duyệt chặt chẽ:</strong> Nội dung được Giáo viên chủ nhiệm cố vấn và kiểm duyệt trước khi nộp về Ban Tổ chức Đoàn trường.</li>
             </ul>
             <div class="pt-2 text-right">
@@ -1099,7 +1081,7 @@
     </div>
 
     <!-- =====================================================================
-         APPLICATION LOGIC (TIMELINE, E-MAGAZINE, WEB AUDIO, 3D WEBGL GALLERY)
+         APPLICATION LOGIC (TIMELINE, E-MAGAZINE, MP3 AUDIO, 3D WEBGL GALLERY)
          ===================================================================== -->
     <script>
         /* -------------------------------------------------------------------
@@ -1289,43 +1271,47 @@
                 id: 1,
                 category: "tan-van",
                 categoryLabel: "Tản Văn Tri Ân",
-                title: "Những Mùa Nắng Đi Qua Khung Cửa Lớp Chuyên Quang Trung",
-                author: "Ban Biên Tập Chi Đoàn",
-                readTime: "4 phút đọc",
-                excerpt: "Dưới tán cây xanh mát của sân trường THPT Chuyên Quang Trung, có những buổi chiều nắng nghiêng qua bục giảng, in bóng dáng Thầy Cô đang miệt mài bên từng trang giáo án...",
+                title: "Lời Tri Ân Gửi Thanh Xuân Dưới Mái Trường Chuyên Quang Trung",
+                author: "Các thành viên trong nhóm",
+                readTime: "5 phút đọc",
+                excerpt: "Tháng mười một lại về, mang theo những cơn gió se lạnh đầu đông thổi qua từng dãy hành lang thân thuộc, qua những ô cửa sổ lớp học rợp bóng cây xanh...",
                 content: `
                     <p class="dropcap text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
-                        Tháng Mười Một về trên mảnh đất Đồng Xoài luôn mang theo một sắc nắng rất riêng — trong trẻo, dịu dàng và ấm áp. Dưới mái trường THPT Chuyên Quang Trung, nơi những ước mơ học thuật được ươm mầm mỗi ngày, chúng em lớn lên trong sự bao dung và tận tụy thầm lặng của Thầy Cô.
+                        Tháng mười một lại về, mang theo những cơn gió se lạnh đầu đông thổi qua từng dãy hành lang thân thuộc, qua những ô cửa sổ lớp học rợp bóng cây xanh. Ngồi lật lại từng trang ký ức của ba năm cấp ba dưới mái trường THPT Chuyên Quang Trung, lòng em bỗng nghẹn ngào đến lạ. Chỉ còn vài tháng nữa thôi, chuyến đò thanh xuân này sẽ cập bến, chúng em sẽ phải rời xa nơi này để bước vào ngưỡng cửa cuộc đời. Nhân ngày Nhà giáo Việt Nam 20/11, em có đôi lời tri ân chân thành nhất gửi đến mái nhà chung đã nuôi dưỡng chúng em suốt ba năm qua.
+                    </p>
+                    <h3 class="font-bold text-tribute-crimson dark:text-amber-400 text-lg mt-5 mb-2">Mái nhà chung mang tên "Chuyên Quang Trung"</h3>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Ba năm trước, bước chân vào ngôi trường chuyên của tỉnh với bao bỡ ngỡ, rụt rè và cả những nỗi sợ hãi vô hình trước áp lực học tập. Thế nhưng, chính sự ấm áp và tận tụy của thầy cô đã biến Chuyên Quang Trung từ một cái tên xa lạ trở thành "ngôi nhà thứ hai". Nơi đây không chỉ có những giờ học miệt mài bên trang sách, không chỉ có những cuộc thi học sinh giỏi căng thẳng, mà nơi đây còn có ánh mắt động viên dịu dàng mỗi khi chúng em vấp ngã, có những nụ cười tự hào khi chúng em chạm tay đến thành công. Từng góc sân trường, từng hàng ghế đá, từng bậc cầu thang đều đã in dấu chân và thấm đẫm tình cảm thiêng liêng của thầy và trò.
+                    </p>
+                    <h3 class="font-bold text-tribute-crimson dark:text-amber-400 text-lg mt-5 mb-2">Lời tri ân gửi đến những người "chèo lái" tận tụy</h3>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Để Chuyên Quang Trung luôn vững vàng là ngọn hải đăng rọi sáng tri thức, không thể không nhắc đến sự dẫn dắt đầy tâm huyết của Ban Giám hiệu nhà trường. Em xin gửi lời kính trọng và biết ơn sâu sắc nhất đến thầy hiệu trưởng Trần Minh Hiền. Dù ở vị trí đầu tàu với muôn vàn bộn bề, lo toan, thầy vẫn luôn dành cho học sinh chúng em sự quan tâm sâu sát, tạo mọi điều kiện tốt nhất để chúng em được học tập và phát triển toàn diện trong một môi trường học tập thân thiện, ấm áp và giàu tình yêu thương.
                     </p>
                     <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
-                        Chúng em nhớ những buổi chiều ôn luyện đội tuyển học sinh giỏi, khi nắng đã tắt ngoài hành lang lớp học mà ánh đèn phòng bộ môn vẫn sáng. Nhớ giọng giảng trầm ấm của thầy, nét chữ nắn nót của cô trên bảng xanh, và cả những lời động viên ân cần khi chúng em mỏi mệt trước những kỳ thi lớn.
+                        Và em cũng xin kính cẩn gửi lời cảm ơn đến thầy hiệu phó Vũ Đăng Tăng – người luôn đồng hành thầm lặng nhưng đầy trách nhiệm, sát sao trong từng phong trào, từng nề nếp để giữ gìn kỷ cương và uy tín của nhà trường. Sự nghiêm khắc nhưng đong đầy tình yêu thương của các thầy chính là điểm tựa vững chắc, là tấm gương lớn để chúng em noi theo trên bước đường trưởng thành.
+                    </p>
+                    <h3 class="font-bold text-tribute-crimson dark:text-amber-400 text-lg mt-5 mb-2">Những người "giữ lửa" thầm lặng trên từng bục giảng</h3>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Tình yêu của chúng em dành cho Chuyên Quang Trung còn được dệt nên bởi tất cả quý thầy cô giáo bộ môn – những người ngày ngày miệt mài bên trang giáo án, chắt chiu từng giọt tri thức để thắp sáng tương lai cho bao thế hệ học trò.
+                    </p>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Chính sự kiên nhẫn vô bờ của thầy cô mỗi khi tụi em không hiểu bài, những giờ ôn luyện miệt mài bất kể trưa nắng hay chiều muộn, những giọt mồ hôi lấm tấm trên trán hòa cùng bụi phấn trắng đã tạo nên một phiên bản tốt hơn của chúng em ngày hôm nay. Có những thầy cô nghiêm khắc đến mức tụi em từng phải than thở mỗi khi đến tiết học, nhưng đằng sau sự nghiêm khắc ấy là cả một tấm lòng bao dung, chỉ mong chúng em nên người, vững vàng trước mọi giông bão của cuộc đời. Cảm ơn quý thầy cô vì đã không chỉ dạy chữ, mà còn dạy cho chúng em cách sống tử tế, cách yêu thương và trân trọng giá trị của bản thân.
+                    </p>
+                    <h3 class="font-bold text-tribute-crimson dark:text-amber-400 text-lg mt-5 mb-2">Thầy Nguyễn Việt Hải và lớp 12H – Mối duyên tiền định của thanh xuân</h3>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Và trong bức tranh thanh xuân rực rỡ ấy, mảng màu ấm áp nhất, khiến trái tim em thổn thức nhiều nhất chính là lớp 12H và người thầy chủ nhiệm kính yêu – thầy Nguyễn Việt Hải.
+                    </p>
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Thầy Hải ơi, chúng em là những đứa trẻ bồng bột vẫn còn vấp phải những sai lầm nhỏ, thậm chí là những lỗi không đáng có. Thế nhưng, chưa một lần nào thầy buông tay chúng em. Thầy không chỉ là một người giáo viên truyền đạt kiến thức chuyên môn sâu sắc, mà thầy còn như một người cha hiền, một người bạn lớn luôn lắng nghe và thấu hiểu.
                     </p>
                     <blockquote class="my-6 p-5 rounded-2xl bg-amber-50 dark:bg-slate-800 border-l-4 border-tribute-crimson font-serif italic text-lg text-tribute-navy dark:text-amber-200">
-                        “Thầy Cô không chỉ dạy chúng em công thức để giải một bài toán khó, mà còn dạy chúng em cách giữ trái tim nhân hậu, kiên cường trước cuộc đời.”
+                        “Những lời dặn dò tỉ mỉ trước mỗi kỳ thi, ánh mắt lo âu khi lớp có bạn sa sút, hay những trận cười sảng khoái trong giờ sinh hoạt lớp... tất cả đã khắc sâu vào tâm trí tụi em.”
                     </blockquote>
-                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                        Kỷ niệm 44 năm Ngày Nhà giáo Việt Nam (20/11/1982 – 20/11/2026), tập thể lớp xin gửi trọn lòng biết ơn sâu sắc nhất đến những “Người Gieo Hạt Nắng” dưới mái trường Chuyên Quang Trung thân yêu.
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Cảm ơn thầy vì đã luôn bao dung cho những sai lầm tuổi trẻ, đã kiên nhẫn uốn nắn từng đứa một. Tụi em tự hào vì được là học sinh của thầy, được là một mảnh ghép của gia đình 12H đầy ắp tiếng cười và tình yêu thương.
                     </p>
-                `
-            },
-            {
-                id: 2,
-                category: "phong-van",
-                categoryLabel: "Góc Phỏng Vấn GVCN",
-                title: "Trò Chuyện Cùng Giáo Viên Chủ Nhiệm: “Mỗi Khóa Học Trò Là Một Trang Thanh Xuân”",
-                author: "Nhóm Phóng Viên Trẻ",
-                readTime: "5 phút đọc",
-                excerpt: "Buổi trò chuyện đầy xúc động cùng Giáo viên chủ nhiệm về những kỷ niệm đáng nhớ, niềm tự hào và lời nhắn nhủ dành cho tập thể lớp trước ngưỡng cửa trưởng thành.",
-                content: `
-                    <p class="dropcap text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
-                        Trong mắt chúng em, Giáo viên chủ nhiệm không chỉ là người thầy trên bục giảng mà còn là người mẹ, người cha thứ hai luôn lắng nghe và đồng hành cùng tập thể lớp qua từng mùa thi, từng hoạt động phong trào của Đoàn trường.
-                    </p>
-                    <div class="my-5 p-5 rounded-2xl bg-paper-warm dark:bg-slate-800 space-y-3">
-                        <p class="font-bold text-tribute-crimson dark:text-amber-400">Hỏi: Điều gì khiến Cô tự hào nhất khi đồng hành cùng các thế hệ học sinh THPT Chuyên Quang Trung?</p>
-                        <p class="text-slate-700 dark:text-slate-200 italic">“Đó là ánh mắt say mê khám phá tri thức và tinh thần đoàn kết, lễ phép của các em. Dù các em đạt giải cao trong các kỳ thi hay đơn giản là biết sẻ chia, giúp đỡ bạn bè trong lớp, đó đều là món quà 20/11 quý giá nhất đối với người làm nghề giáo.”</p>
-                    </div>
-                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                        Khép lại buổi trò chuyện, Cô gửi lời chúc đến toàn thể đoàn viên của lớp luôn giữ vững ngọn lửa nhiệt huyết, tự tin tỏa sáng và mãi nhớ về mái nhà chung THPT Chuyên Quang Trung.
+                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
+                        Nhân ngày 20/11, đứng trước ngưỡng cửa của năm học cuối cấp, chúng em chẳng biết nói gì hơn ngoài hai tiếng "Biết ơn". Chúng em kính chúc toàn thể quý thầy cô giáo trường THPT Chuyên Quang Trung luôn dồi dào sức khỏe, bình an và giữ mãi ngọn lửa đam mê cháy bỏng với sự nghiệp trồng người. Dù sau này có đi đến phương trời nào, bay cao và bay xa đến đâu, thì hai tiếng "Chuyên Quang Trung" cùng hình bóng của quý thầy cô vẫn mãi là niềm tự hào kiêu hãnh nhất, là bến đỗ bình yên nhất trong trái tim mỗi đứa học trò chúng em!
                     </p>
                 `
             },
@@ -1333,128 +1319,127 @@
                 id: 3,
                 category: "tan-van",
                 categoryLabel: "Thơ Sáng Tác",
-                title: "Chùm Thơ: Bụi Phấn Trắng & Cánh Phượng Hồng Quang Trung",
-                author: "Tập Thể Học Sinh Lớp",
+                title: "Chùm Thơ: Tuyển Tập Thơ Hay Tri Ân Thầy Cô",
+                author: "Các thành viên trong nhóm",
                 readTime: "3 phút đọc",
-                excerpt: "Những vần thơ mộc mạc, chân thành do chính các thành viên trong Chi đoàn tự sáng tác để kính tặng Thầy Cô nhân dịp kỷ niệm 44 năm Ngày Nhà giáo Việt Nam.",
+                excerpt: "Thời gian cứ thế êm đềm trôi / Bụi phấn bay bay bạc tóc rồi, / Thầy vẫn đứng đây trên bục giảng / Dạy em khôn lớn thành người thôi...",
                 content: `
                     <div class="text-center font-serif italic text-lg sm:text-xl text-tribute-navy dark:text-amber-100 space-y-6 py-4">
                         <div>
-                            <p>Sáng Đồng Xoài nắng trải nhẹ hàng cây,</p>
-                            <p>Cổng trường Chuyên mở chân trời ước vọng.</p>
-                            <p>Bao năm tháng thầy âm thầm gieo giống,</p>
-                            <p>Cho mùa vàng tri thức nở ngàn hoa.</p>
+                            <p>Thời gian cứ thế êm đềm trôi</p>
+                            <p>Bụi phấn bay bay bạc tóc rồi,</p>
+                            <p>Thầy vẫn đứng đây trên bục giảng</p>
+                            <p>Dạy em khôn lớn thành người thôi.</p>
                         </div>
                         <div>
-                            <p>Bụi phấn rơi vương mái tóc phôi pha,</p>
-                            <p>Từng trang vở thấm tình cô ấm áp.</p>
-                            <p>Bốn mươi tư mùa tri ân dào dạt,</p>
-                            <p>Khắc ghi lòng đạo lý nghĩa thầy trò.</p>
+                            <p>Mỗi giờ lên lớp là quyết tâm,</p>
+                            <p>Từng lời cô giảng rất hiền hòa.</p>
+                            <p>Nâng niu tiếp bước bao thế hệ,</p>
+                            <p>Vững vàng đi tiếp tới tương lai.</p>
+                        </div>
+                        <div>
+                            <p>Hôm nay nhân ngày hai mươi tháng mười một,</p>
+                            <p>Chúng em xin kính chúc thầy cô:</p>
+                            <p>Luôn luôn mạnh khỏe, nhiều niềm vui,</p>
+                            <p>Đón thêm bao chuyến đò cập bến.</p>
+                        </div>
+                        <div>
+                            <p>Mai này khôn lớn xa trường lớp,</p>
+                            <p>Lời dạy ngày xưa mãi khắc ghi.</p>
+                        </div>
+
+                        <div class="w-24 h-px bg-tribute-crimson mx-auto my-8"></div>
+
+                        <div>
+                            <p>Thời gian trôi qua sao nhanh quá</p>
+                            <p>Mới ngày nào bỡ ngỡ vào trường</p>
+                            <p>Cấp ba gửi lại bao thương nhớ</p>
+                            <p>Gửi cả thầy cô vạn kính yêu.</p>
+                        </div>
+                        <div>
+                            <p>Áp lực thi cử cứ đè nặng</p>
+                            <p>Những đêm thức trắng với bài thi</p>
+                            <p>Đôi lúc mệt nhoài muốn bỏ cuộc</p>
+                            <p>Lại thấy dáng thầy dưới đèn khuya.</p>
+                        </div>
+                        <div>
+                            <p>Lời thầy trầm ấm truyền tri thức</p>
+                            <p>Ánh mắt cô hiền dịu bao dung</p>
+                            <p>Mỗi bài học mới thầy cô giảng</p>
+                            <p>Là một hành trang bước đường dài.</p>
+                        </div>
+                        <div>
+                            <p>Hôm nay ngày hội của thầy cô</p>
+                            <p>Tụi em chẳng có quà gì sang</p>
+                            <p>Chỉ có bông hoa cùng điểm tốt</p>
+                            <p>Và lời xin lỗi đã muộn màng.</p>
+                        </div>
+                        <div>
+                            <p>Cảm ơn thầy cô vì tất cả</p>
+                            <p>Thanh xuân vất vả dạy dỗ em</p>
+                            <p>Chúc thầy cô mãi luôn mạnh khỏe</p>
+                            <p>Lái thêm nhiều chuyến đò bình yên.</p>
                         </div>
                     </div>
                 `
             },
             {
-                id: 4,
-                category: "multimedia",
-                categoryLabel: "Infographic Sáng Tạo",
-                title: "Infographic: một Ngày Thầm Lặng Của Thầy Cô Trường Chuyên",
-                author: "Đội Thiết Kế Đồ Họa",
-                readTime: "3 phút xem",
-                excerpt: "Góc nhìn trực quan từ 6h30 sáng đến 22h00 đêm của các thầy cô giáo trường THPT Chuyên Quang Trung: từ tiết dạy chính khóa, bồi dưỡng đội tuyển đến những trang giáo án khuya.",
+                id: 2,
+                category: "tan-van",
+                isVideo: true,
+                embedUrl: "https://www.youtube.com/embed/aQgU0lrPXcs",
+                categoryLabel: "Video Tri Ân",
+                title: "Thước Phim Kỷ Niệm: Thanh Xuân Dưới Mái Trường",
+                author: "Tập thể Chi đoàn 12H",
+                readTime: "Video Clip",
+                excerpt: "Những khoảnh khắc đáng nhớ của thầy và trò dưới mái trường THPT Chuyên Quang Trung.",
                 content: `
                     <div class="space-y-4">
-                        <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                            Đằng sau mỗi tiết học sinh động trên lớp là hàng giờ chuẩn bị tài liệu, chấm bài và đồng hành tâm lý cùng học sinh của các thầy cô giáo tại THPT Chuyên Quang Trung:
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div class="p-4 rounded-2xl bg-paper-warm dark:bg-slate-800 border border-paper-border dark:border-slate-700">
-                                <span class="text-xs font-bold text-tribute-crimson dark:text-amber-400">06:45 – 11:15</span>
-                                <h4 class="font-bold text-base mt-1">Những tiết giảng say sưa</h4>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Truyền lửa đam mê khoa học, văn chương và ngoại ngữ trên giảng đường.</p>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-paper-warm dark:bg-slate-800 border border-paper-border dark:border-slate-700">
-                                <span class="text-xs font-bold text-tribute-crimson dark:text-amber-400">13:30 – 17:00</span>
-                                <h4 class="font-bold text-base mt-1">Bồi dưỡng đội tuyển & Nghiên cứu</h4>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Đồng hành cùng học sinh chinh phục các kỳ thi Học sinh giỏi Quốc gia, Olympic.</p>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-paper-warm dark:bg-slate-800 border border-paper-border dark:border-slate-700">
-                                <span class="text-xs font-bold text-tribute-crimson dark:text-amber-400">17:00 – 18:30</span>
-                                <h4 class="font-bold text-base mt-1">Lắng nghe & Sẻ chia</h4>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Tư vấn tâm lý, động viên học sinh nội trú và các em xa nhà.</p>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-paper-warm dark:bg-slate-800 border border-paper-border dark:border-slate-700">
-                                <span class="text-xs font-bold text-tribute-crimson dark:text-amber-400">20:00 – 22:30</span>
-                                <h4 class="font-bold text-base mt-1">Ngọn đèn bàn bên trang giáo án</h4>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Cập nhật phương pháp giảng dạy số và chấm chữa từng bài tập cho học trò.</p>
-                            </div>
+                        <div class="rounded-2xl overflow-hidden bg-black shadow-lg border border-paper-border dark:border-slate-700 aspect-video">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/aQgU0lrPXcs" title="20thang11" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
+                        <p class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed italic text-center">
+                            “Mỗi thước phim là một mảnh ghép thanh xuân tươi đẹp bên Thầy Cô và bè bạn tại mái nhà chung Chuyên Quang Trung.”
+                        </p>
                     </div>
-                `
-            },
-            {
-                id: 5,
-                category: "phong-van",
-                categoryLabel: "Phỏng Vấn Đa Thế Hệ",
-                title: "Lời Nhắn Gửi Từ Cựu Học Sinh & Đoàn Viên Khóa Hiện Tại",
-                author: "Ban Truyền Thông Lớp",
-                readTime: "4 phút đọc",
-                excerpt: "Sự tiếp nối tự hào giữa các thế hệ học sinh Chuyên Quang Trung khi nhớ về bóng dáng thầy cô đã chắp cánh cho những ước mơ bay xa.",
-                content: `
-                    <p class="dropcap text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
-                        Dù đang ngồi trên ghế nhà trường hay đã tung cánh đến những giảng đường đại học trong và ngoài nước, mỗi khi tháng Mười Một chạm ngõ, trái tim của các thế hệ học sinh THPT Chuyên Quang Trung đều hướng về mái trường xưa.
-                    </p>
-                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                        Những bài học làm người, tinh thần tự học nghiêm túc và kỷ luật vượt khó mà Thầy Cô trao truyền chính là hành trang quý báu nhất theo suốt cuộc đời mỗi học sinh.
-                    </p>
-                `
-            },
-            {
-                id: 6,
-                category: "multimedia",
-                categoryLabel: "Tiêu Điểm Đa Phương Tiện",
-                title: "Hành Trình 44 Năm Tôn Sư Trọng Đạo & Sức Trẻ Chuyển Đổi Số",
-                author: "Đội Kỹ Thuật Số",
-                readTime: "4 phút xem",
-                excerpt: "Sự kết hợp hài hòa giữa giá trị truyền thống và công nghệ hiện đại trong chuỗi hoạt động chào mừng 20/11/2026 tại Trường THPT Chuyên Quang Trung.",
-                content: `
-                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-4">
-                        Thực hiện Kế hoạch số 09/KH-ĐTN của BCH Đoàn trường THPT Chuyên Quang Trung, không gian truyền thông số này được thiết kế tối ưu cho trải nghiệm quét mã QR trên điện thoại di động kết hợp không gian triển lãm 3D trực quan.
-                    </p>
-                    <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed">
-                        Mỗi dòng code, mỗi bức ảnh và giai điệu trên trang đều được các thành viên trong lớp thực hiện bằng tất cả lòng biết ơn dành tặng Quý Thầy Cô.
-                    </p>
                 `
             }
         ];
 
         function renderArticles(filter = 'all') {
             const grid = document.getElementById('emag-grid');
-            const filtered = filter === 'all' ? emagArticles : emagArticles.filter(a => a.category === filter);
+            const filtered = filter === 'all' 
+                ? emagArticles 
+                : emagArticles.filter(a => a.category === filter || (filter === 'multimedia' && a.isVideo));
 
             grid.innerHTML = filtered.map(article => `
-                <article onclick="openArticleModal(${article.id})" class="cursor-pointer group rounded-3xl bg-white dark:bg-slate-800/90 border border-paper-border dark:border-slate-700 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <article onclick="${article.isVideo ? '' : `openArticleModal(${article.id})`}" class="${article.isVideo ? '' : 'cursor-pointer'} group rounded-3xl bg-white dark:bg-slate-800/90 border border-paper-border dark:border-slate-700 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-3">
                             <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-slate-700 text-tribute-crimson dark:text-amber-300 text-xs font-bold">
                                 ${article.categoryLabel}
                             </span>
                             <span class="text-xs text-slate-400 flex items-center gap-1">
-                                <i class="fa-regular fa-clock"></i> ${article.readTime}
+                                <i class="fa-regular ${article.isVideo ? 'fa-circle-play' : 'fa-clock'}"></i> ${article.readTime}
                             </span>
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-tribute-navy dark:text-white group-hover:text-tribute-crimson dark:group-hover:text-amber-300 transition leading-snug mb-3">
+                        <h3 onclick="openArticleModal(${article.id})" class="cursor-pointer font-serif text-xl font-bold text-tribute-navy dark:text-white group-hover:text-tribute-crimson dark:group-hover:text-amber-300 transition leading-snug mb-3">
                             ${article.title}
                         </h3>
+                        ${article.isVideo ? `
+                            <div class="rounded-2xl overflow-hidden bg-slate-950 mb-3 border border-paper-border dark:border-slate-700 aspect-video">
+                                <iframe class="w-full h-full" src="${article.embedUrl}" title="20thang11" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        ` : ''}
                         <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
                             ${article.excerpt}
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-paper-border dark:border-slate-700 flex items-center justify-between text-xs">
                         <span class="font-medium text-slate-500 dark:text-slate-400">${article.author}</span>
-                        <span class="font-bold text-tribute-crimson dark:text-amber-400 group-hover:translate-x-1 transition inline-flex items-center gap-1">
-                            Đọc toàn bài <i class="fa-solid fa-arrow-right"></i>
-                        </span>
+                        <button onclick="openArticleModal(${article.id})" class="font-bold text-tribute-crimson dark:text-amber-400 group-hover:translate-x-1 transition inline-flex items-center gap-1">
+                            ${article.isVideo ? 'Phóng to video' : 'Đọc toàn bài'} <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
                 </article>
             `).join('');
@@ -1502,103 +1487,25 @@
         }
 
         /* -------------------------------------------------------------------
-           4. WEB AUDIO API SYNTHESIZER (100% COPYRIGHT-FREE PIANO MELODY)
+           4. MP3 AUDIO PLAYER CONTROLLER
            ------------------------------------------------------------------- */
-        let audioCtx = null;
         let isPlayingAudio = false;
-        let melodyInterval = null;
-        let currentTrackIndex = 0;
-
-        const tracksData = [
-            {
-                name: "Hạt Nắng Sân Trường",
-                desc: "“Giai điệu Piano & Music Box tự tổng hợp bằng công nghệ Web Audio API, lấy cảm hứng từ tiếng chuông vào lớp và những buổi chiều tự học bình yên tại trường THPT Chuyên Quang Trung.”",
-                notes: [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63, 293.66, 349.23, 440.00, 392.00, 329.63],
-                tempo: 650
-            },
-            {
-                name: "Chuyện Chưa Kể Về Thầy Cô",
-                desc: "“Nhịp điệu Lofi ấm áp dẫn dắt người nghe qua những câu chuyện hậu trường đầy xúc động về sự tận tụy của các thầy cô giáo trường chuyên.”",
-                notes: [220.00, 261.63, 329.63, 440.00, 392.00, 329.63, 293.66, 246.94, 261.63, 329.63],
-                tempo: 780
-            },
-            {
-                name: "Khúc Ca Người Gieo Hạt",
-                desc: "“Bản hòa âm tươi sáng chào mừng kỷ niệm 44 năm Ngày Nhà giáo Việt Nam (20/11/1982 – 20/11/2026) của tập thể đoàn viên thanh niên.”",
-                notes: [293.66, 369.99, 440.00, 587.33, 523.25, 440.00, 392.00, 329.63, 369.99, 440.00],
-                tempo: 560
-            }
-        ];
-
-        function playPianoNote(freq) {
-            if (!audioCtx) return;
-            const now = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now);
-
-            gain.gain.setValueAtTime(0.001, now);
-            gain.gain.exponentialRampToValueAtTime(0.14, now + 0.06);
-            gain.gain.exponentialRampToValueAtTime(0.0008, now + 1.4);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(now);
-            osc.stop(now + 1.45);
-        }
-
-        function startMelodyLoop() {
-            if (melodyInterval) clearInterval(melodyInterval);
-            let noteIdx = 0;
-            const track = tracksData[currentTrackIndex];
-            playPianoNote(track.notes[0]);
-            melodyInterval = setInterval(() => {
-                if (!isPlayingAudio) return;
-                noteIdx = (noteIdx + 1) % track.notes.length;
-                playPianoNote(track.notes[noteIdx]);
-            }, track.tempo);
-        }
 
         function toggleAudioPlayback() {
-            if (!audioCtx) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContextClass();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            const audioEl = document.getElementById('bg-music-player');
+            if (!audioEl) return;
 
-            isPlayingAudio = !isPlayingAudio;
-            updateAudioUI();
-
-            if (isPlayingAudio) {
-                startMelodyLoop();
-            } else if (melodyInterval) {
-                clearInterval(melodyInterval);
-            }
-        }
-
-        function selectTrack(idx) {
-            currentTrackIndex = idx;
-            document.getElementById('current-track-desc').textContent = tracksData[idx].desc;
-            document.getElementById('floating-track-name').textContent = tracksData[idx].name;
-
-            for (let i = 0; i < 3; i++) {
-                const btn = document.getElementById(`track-btn-${i}`);
-                if (i === idx) {
-                    btn.className = "track-btn text-left p-3.5 rounded-2xl bg-white/15 border border-amber-400/60 transition hover:bg-white/20";
-                } else {
-                    btn.className = "track-btn text-left p-3.5 rounded-2xl bg-white/5 border border-white/10 transition hover:bg-white/15";
-                }
-            }
-
-            if (!isPlayingAudio) {
-                toggleAudioPlayback();
+            if (audioEl.paused) {
+                audioEl.play().then(() => {
+                    isPlayingAudio = true;
+                    updateAudioUI();
+                }).catch(err => {
+                    console.warn("Không thể phát file nhạc, vui lòng kiểm tra lại tên file MP3:", err);
+                });
             } else {
-                startMelodyLoop();
+                audioEl.pause();
+                isPlayingAudio = false;
+                updateAudioUI();
             }
         }
 
@@ -1615,9 +1522,9 @@
                 vinyl.classList.add('playing');
                 eq.classList.add('playing');
                 heroIcon.className = 'fa-solid fa-pause text-tribute-crimson dark:text-amber-400';
-                heroText.textContent = 'Tạm Dừng Giai Điệu';
+                heroText.textContent = 'Tạm Dừng Nhạc';
                 studioIcon.className = 'fa-solid fa-pause';
-                studioText.textContent = 'Đang Phát Nhạc';
+                studioText.textContent = 'Tạm Dừng';
                 floatingIcon.className = 'fa-solid fa-pause text-xs';
             } else {
                 vinyl.classList.remove('playing');
@@ -1625,25 +1532,22 @@
                 heroIcon.className = 'fa-solid fa-play text-tribute-crimson dark:text-amber-400';
                 heroText.textContent = 'Nghe Giai Điệu Tri Ân';
                 studioIcon.className = 'fa-solid fa-play';
-                studioText.textContent = 'Phát Giai Điệu';
+                studioText.textContent = 'Phát Bài Hát';
                 floatingIcon.className = 'fa-solid fa-play text-xs';
             }
         }
 
         /* -------------------------------------------------------------------
            5. PHÂN KHU 3: INTERACTIVE 3D EXHIBITION ROOM (THREE.JS WEBGL)
-              (PURE 3D GALLERY - NO AI RESTORATION FEATURES)
            ------------------------------------------------------------------- */
         const STORAGE_KEY_GALLERY = "cqt_3d_gallery_2026_v2";
 
-        // Generate crisp, artistic default canvas data URLs representing THPT Chuyên Quang Trung memories
         function createDefaultArtworkDataURL(index, title, subtitle, palette) {
             const c = document.createElement('canvas');
             c.width = 800;
             c.height = 560;
             const ctx = c.getContext('2d');
 
-            // Gradient background
             const grad = ctx.createLinearGradient(0, 0, 800, 560);
             grad.addColorStop(0, palette[0]);
             grad.addColorStop(0.55, palette[1]);
@@ -1651,21 +1555,18 @@
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 800, 560);
 
-            // Warm sun/light glow
             const radial = ctx.createRadialGradient(620, 130, 20, 620, 130, 260);
             radial.addColorStop(0, 'rgba(253, 230, 138, 0.75)');
             radial.addColorStop(1, 'rgba(253, 230, 138, 0)');
             ctx.fillStyle = radial;
             ctx.fillRect(0, 0, 800, 560);
 
-            // Architectural / School Campus Stylized Silhouette
             ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
             ctx.fillRect(90, 180, 620, 230);
             ctx.strokeStyle = 'rgba(253, 230, 138, 0.65)';
             ctx.lineWidth = 4;
             ctx.strokeRect(50, 40, 700, 480);
 
-            // School Arch & Trees motif
             ctx.fillStyle = 'rgba(15, 23, 42, 0.35)';
             ctx.beginPath();
             ctx.arc(400, 310, 95, Math.PI, 0, false);
@@ -1674,22 +1575,18 @@
             ctx.closePath();
             ctx.fill();
 
-            // Header Tag
             ctx.fillStyle = '#FDE68A';
             ctx.font = 'bold 20px "Be Vietnam Pro", sans-serif';
             ctx.fillText(`TRƯỜNG THPT CHUYÊN QUANG TRUNG • KHUNG TRANH 0${index + 1}`, 85, 95);
 
-            // Main Title
             ctx.fillStyle = '#FFFFFF';
             ctx.font = 'bold 34px "Playfair Display", serif';
             ctx.fillText(title, 85, 365);
 
-            // Subtitle
             ctx.fillStyle = '#FEF3C7';
             ctx.font = 'italic 22px "Be Vietnam Pro", sans-serif';
             ctx.fillText(subtitle, 85, 405);
 
-            // Footer note
             ctx.fillStyle = 'rgba(255,255,255,0.75)';
             ctx.font = '16px "Be Vietnam Pro", sans-serif';
             ctx.fillText('Kỷ niệm 44 năm Ngày Nhà giáo Việt Nam (20/11/1982 – 20/11/2026)', 85, 485);
@@ -1795,25 +1692,22 @@
             }
         }
 
-        // Three.js Scene Variables
         let scene, camera, renderer, raycaster, mouse;
         let frameMeshes = [];
         let frameGroupList = [];
         let centralMonumentMesh = null;
-        let galleryLayoutMode = 'room'; // 'room' or 'ring'
+        let galleryLayoutMode = 'room';
         let isAutoTour = true;
         let isUserDragging = false;
         let dragStartX = 0, dragStartY = 0;
         let pointerMovedDistance = 0;
 
-        // Smooth Camera Orbit / Focus Target
         let cameraAngle = 0;
         let targetCameraAngle = 0;
         let cameraPitch = 0.04;
         let targetCameraPitch = 0.04;
         let cameraRadius = 11.5;
 
-        // Create composite framed texture with title plaque at the bottom
         function createFramedArtworkTexture(artwork, index) {
             const canvas = document.createElement('canvas');
             canvas.width = 768;
@@ -1824,16 +1718,13 @@
             tex.anisotropy = 4;
 
             const drawCanvasContent = (imgElement) => {
-                // Outer matboard background
                 ctx.fillStyle = '#FAF6EE';
                 ctx.fillRect(0, 0, 768, 576);
 
-                // Inner gold trim border
                 ctx.strokeStyle = '#D4A373';
                 ctx.lineWidth = 6;
                 ctx.strokeRect(18, 18, 732, 464);
 
-                // Draw image inside matboard with cover aspect ratio
                 if (imgElement) {
                     const targetX = 24, targetY = 24, targetW = 720, targetH = 452;
                     const imgRatio = imgElement.width / imgElement.height;
@@ -1850,14 +1741,12 @@
                     ctx.drawImage(imgElement, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
                 }
 
-                // Bottom Museum Plaque on the Frame
                 ctx.fillStyle = '#1D3557';
                 ctx.fillRect(18, 492, 732, 68);
                 ctx.strokeStyle = '#D4A373';
                 ctx.lineWidth = 2;
                 ctx.strokeRect(18, 492, 732, 68);
 
-                // Plaque Text
                 ctx.fillStyle = '#FDE68A';
                 ctx.font = 'bold 16px "Be Vietnam Pro", sans-serif';
                 ctx.fillText(`0${index + 1} • ${artwork.badge.toUpperCase()}`, 36, 518);
@@ -1951,7 +1840,6 @@
             raycaster = new THREE.Raycaster();
             mouse = new THREE.Vector2();
 
-            // Ambient & Warm Gallery Lighting
             const ambientLight = new THREE.AmbientLight(0xfff8e7, 0.78);
             scene.add(ambientLight);
 
@@ -1959,7 +1847,6 @@
             centerPointLight.position.set(0, 6.2, 0);
             scene.add(centerPointLight);
 
-            // Polished Wooden/Marble Gallery Floor with Concentric Golden Rings
             const floorGeo = new THREE.CircleGeometry(18, 64);
             const floorMat = new THREE.MeshStandardMaterial({
                 color: 0x141e30,
@@ -1970,7 +1857,6 @@
             floor.rotation.x = -Math.PI / 2;
             scene.add(floor);
 
-            // Golden Floor Trim Rings
             [5.5, 9.8, 13.8].forEach(radius => {
                 const ringGeo = new THREE.RingGeometry(radius - 0.05, radius, 64);
                 const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4a373, side: THREE.DoubleSide });
@@ -1980,7 +1866,6 @@
                 scene.add(ringMesh);
             });
 
-            // Outer Circular Museum Wall
             const wallGeo = new THREE.CylinderGeometry(14.2, 14.2, 7.5, 64, 1, true);
             const wallMat = new THREE.MeshStandardMaterial({
                 color: 0x162238,
@@ -1991,7 +1876,6 @@
             wall.position.y = 3.75;
             scene.add(wall);
 
-            // Central Commemorative Pedestal & Rotating Monument Cube
             const pedestalGeo = new THREE.CylinderGeometry(1.15, 1.35, 0.9, 32);
             const pedestalMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.3, roughness: 0.4 });
             const pedestal = new THREE.Mesh(pedestalGeo, pedestalMat);
@@ -2008,14 +1892,10 @@
             centralMonumentMesh.position.set(0, 1.85, 0);
             scene.add(centralMonumentMesh);
 
-            // Build the 8 Picture Frames around the Gallery
             build3DPictureFrames();
-
-            // Position frames & focus on Frame 0
             positionFramesByLayout();
             focusOnArtwork(0, true);
 
-            // Bind Mouse & Touch Events for 360 Orbit & Raycasting Click
             const domElem = renderer.domElement;
 
             domElem.addEventListener('pointerdown', (e) => {
@@ -2033,7 +1913,6 @@
                 dragStartX = e.clientX;
                 dragStartY = e.clientY;
 
-                // Stop auto-tour when user manually looks around
                 if (pointerMovedDistance > 8 && isAutoTour) {
                     isAutoTour = false;
                     updateAutoTourButtonUI();
@@ -2051,12 +1930,10 @@
                 }
             });
 
-            // Resize Listener
             window.addEventListener('resize', on3DWindowResize);
         }
 
         function build3DPictureFrames() {
-            // Clear existing frames if any
             frameGroupList.forEach(g => scene.remove(g));
             frameGroupList = [];
             frameMeshes = [];
@@ -2064,7 +1941,6 @@
             galleryArtworks.forEach((artwork, idx) => {
                 const group = new THREE.Group();
 
-                // Outer Ornate Gold Frame Box
                 const outerFrameGeo = new THREE.BoxGeometry(4.3, 3.3, 0.16);
                 const outerFrameMat = new THREE.MeshStandardMaterial({
                     color: 0xd4a373,
@@ -2074,7 +1950,6 @@
                 const outerFrame = new THREE.Mesh(outerFrameGeo, outerFrameMat);
                 group.add(outerFrame);
 
-                // Inner Crimson Velvet Rim
                 const innerRimGeo = new THREE.BoxGeometry(4.06, 3.06, 0.18);
                 const innerRimMat = new THREE.MeshStandardMaterial({
                     color: 0x781d1e,
@@ -2083,7 +1958,6 @@
                 const innerRim = new THREE.Mesh(innerRimGeo, innerRimMat);
                 group.add(innerRim);
 
-                // Canvas Artwork Plane
                 const artGeo = new THREE.PlaneGeometry(3.88, 2.91);
                 const artTex = createFramedArtworkTexture(artwork, idx);
                 const artMat = new THREE.MeshBasicMaterial({ map: artTex });
@@ -2092,7 +1966,6 @@
                 artMesh.userData = { artworkIndex: idx };
                 group.add(artMesh);
 
-                // Overhead Museum Lamp Fixture above each frame
                 const lampArmGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.5);
                 const lampArmMat = new THREE.MeshStandardMaterial({ color: 0xfde68a, metalness: 0.8 });
                 const lampArm = new THREE.Mesh(lampArmGeo, lampArmMat);
@@ -2123,7 +1996,6 @@
                 const x = Math.sin(angle) * radius;
                 const z = -Math.cos(angle) * radius;
                 group.position.set(x, heightY, z);
-                // Face toward center of the room
                 group.lookAt(0, heightY, 0);
             });
         }
@@ -2149,7 +2021,6 @@
             activeArtworkIndex = (index + galleryArtworks.length) % galleryArtworks.length;
             const desiredAngle = (activeArtworkIndex / galleryArtworks.length) * Math.PI * 2;
 
-            // Shortest angular distance for smooth rotation
             let diff = desiredAngle - targetCameraAngle;
             diff = Math.atan2(Math.sin(diff), Math.cos(diff));
             targetCameraAngle = targetCameraAngle + diff;
@@ -2181,6 +2052,7 @@
         function updateAutoTourButtonUI() {
             const icon = document.getElementById('auto-tour-icon');
             const text = document.getElementById('auto-tour-text');
+            if (!icon || !text) return;
             if (isAutoTour) {
                 icon.className = 'fa-solid fa-pause';
                 text.textContent = 'Đang Dạo Bước';
@@ -2192,6 +2064,7 @@
 
         function toggle3DFullscreen() {
             const wrapper = document.getElementById('three-gallery-wrapper');
+            if (!wrapper) return;
             if (!document.fullscreenElement) {
                 if (wrapper.requestFullscreen) wrapper.requestFullscreen();
             } else {
@@ -2235,7 +2108,6 @@
 
             if (isAutoTour && !isUserDragging) {
                 targetCameraAngle += 0.0018;
-                // Automatically update active artwork HUD based on current camera gaze angle
                 const normalized = ((targetCameraAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
                 const nearestIdx = Math.round((normalized / (Math.PI * 2)) * galleryArtworks.length) % galleryArtworks.length;
                 if (nearestIdx !== activeArtworkIndex) {
@@ -2244,11 +2116,9 @@
                 }
             }
 
-            // Smooth interpolation for camera orientation
             cameraAngle += (targetCameraAngle - cameraAngle) * 0.07;
             cameraPitch += (targetCameraPitch - cameraPitch) * 0.07;
 
-            // Position camera slightly back from center looking outward toward the frames
             const camBackOffset = galleryLayoutMode === 'room' ? 2.2 : 0.4;
             camera.position.x = -Math.sin(cameraAngle) * camBackOffset;
             camera.position.z = Math.cos(cameraAngle) * camBackOffset;
@@ -2259,7 +2129,6 @@
             const lookY = 2.1 + cameraPitch * 6;
             camera.lookAt(lookX, lookY, lookZ);
 
-            // Subtle rotation on central monument
             if (centralMonumentMesh) {
                 centralMonumentMesh.rotation.y += 0.004;
             }
@@ -2276,7 +2145,10 @@
             const art = galleryArtworks[activeArtworkIndex];
             if (!art) return;
 
-            document.getElementById('hud-frame-index').textContent = `KHUNG TRANH 0${activeArtworkIndex + 1} / 08`;
+            const idxEl = document.getElementById('hud-frame-index');
+            if (!idxEl) return;
+
+            idxEl.textContent = `KHUNG TRANH 0${activeArtworkIndex + 1} / 08`;
             document.getElementById('hud-frame-badge').textContent = art.badge;
             document.getElementById('hud-frame-title').textContent = art.title;
             document.getElementById('hud-frame-meta').textContent = art.story;
@@ -2333,7 +2205,6 @@
             openActiveFrameLightbox();
         }
 
-        // Compress uploaded image via Canvas so it renders fast in WebGL & fits LocalStorage
         function compressImageFile(file, callback) {
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -2517,9 +2388,7 @@
                     if (screen.orientation && screen.orientation.lock) {
                         await screen.orientation.lock('landscape');
                     }
-                } catch (err) {
-                    // Trên iOS Safari không hỗ trợ orientation.lock, CSS rotate(90deg) sẽ tự động đảm nhận
-                }
+                } catch (err) {}
             } else {
                 wrapper.classList.remove('landscape-fullscreen');
                 exitBtn.classList.add('hidden');
